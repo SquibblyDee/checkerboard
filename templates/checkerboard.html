@@ -1,0 +1,50 @@
+<!DOCTYPE=html>
+<html>
+    <head>
+        <title>
+            Checkerboard
+        </title>
+        <style>
+        *{
+            /* outline: 1px solid red; */
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container{
+            {% if x != null and y != null %}
+            width: {{x*105}};
+            height: {{y*105}};
+            {% endif %}
+        }
+
+        .color1{
+            background-color: blue;
+            width:100px;
+            height: 100px;
+            margin: 0px -4px -4px 0px;
+            display: inline-block;
+        }
+
+        .color2{
+            background-color: red;
+            width:100px;
+            height: 100px;
+            margin: 0px -4px -4px 0px;
+            display: inline-block;
+        }
+        </style>
+    </head>
+    <body>
+        <div class=container>
+        {% for i in range(x) -%}
+            {% for j in range(y) -%}
+                <!-- This black magic allows us to alternate colors on each div -->
+                <!-- Near the %'s we have a - to delete trailig new lines which was causing weird margins' -->
+                <div class='color{{ (i+j)%2+1 }}'></div>
+            {%- endfor %}
+        {%- endfor %}
+            
+        </div>
+    </body>
+</html>
